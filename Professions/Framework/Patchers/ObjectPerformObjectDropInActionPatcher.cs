@@ -45,17 +45,6 @@ internal sealed class ObjectPerformObjectDropInActionPatcher : HarmonyPatcher
             return;
         }
 
-        var user = who;
-        var owner = __instance.GetOwner();
-        var r = new Random(Guid.NewGuid().GetHashCode());
-
-        if (__instance.QualifiedItemId == QualifiedBigCraftableIds.FishSmoker &&
-            !user.HasProfession(Profession.Artisan))
-        {
-            output.Quality = SObject.lowQuality;
-            return;
-        }
-
         // artisan users can preserve the input quality (golden egg is always best quality)
         if (user.HasProfession(Profession.Artisan) && input.QualifiedItemId != QualifiedObjectIds.GoldenEgg)
         {
